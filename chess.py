@@ -1,29 +1,29 @@
 import numpy as np
 
 
-tower = "tura"
+tower = "tower"
 
-horse = "cal"
+horse = "horse"
 
-bishop = "nebun"
+bishop = "bishop"
 
-queen = "regina"
+queen = "queen"
 
-king = "rege"
+king = "king"
 
-pawn = "pain"
+pawn = "pawn"
 
 pieces = [pawn, king, queen, bishop, horse, tower]
 
-def valueOfPiece(peice: str):
+def valueOfPiece(piece: str):
     """
     Return the value of a piece based on the previously defined array
 
     Args:
-        peice (str): the name of the piece
+        piece (str): the name of the piece
 
     Returns:
-        int: The value precieved by the rules of chess
+        int: The value perceived by the rules of chess
     """
     if piece == pawn:
 
@@ -52,7 +52,7 @@ def valueOfPiece(peice: str):
     return 0
 
 class coordinates:
-    """ A class represting the X Y coordinates of a chess board using two integers
+    """ A class representing the X Y coordinates of a chess board using two integers
     """
     def __init__(self,x:int,y:int):
         self.X = x
@@ -75,7 +75,7 @@ class piece:
         """
         if piece not in pieces:
             raise Exception(
-                f"{peice} is not a valid peice please choose from:{pieces}")
+                f"{piece} is not a valid piece please choose from:{pieces}")
         self.name = piece
         self.value = valueOfPiece(piece)
         self.player = player1Piece
@@ -101,7 +101,7 @@ class piece:
             return 'T'
 
     def GetMoves(self):
-        """Return an aray with all the moves possible for the piece ,only restriction being that the moves have to happen on board.
+        """Return an array with all the moves possible for the piece ,only restriction being that the moves have to happen on board.
 
         Returns:
             list<coordinates>: The list of possible coordinates on the table.
@@ -109,41 +109,41 @@ class piece:
         if self.name == pawn:
             return [coordinates(self.coordinates.X, self.coordinates.Y)]
         elif self.name == king:
-            posib = []
+            possibility = []
             for i in np.arange(-1,1):
                 for j in np.arange(-1,1):
                     if self.coordinates.X+i<0 or self.coordinates.Y+j<0:
-                        posib.append(coordinates(self.coordinates.X+i, self.coordinates.Y+j))
-            return posib
+                        possibility.append(coordinates(self.coordinates.X+i, self.coordinates.Y+j))
+            return possibility
         elif self.name == queen:
-            posib = []
+            possibility = []
             for i in np.arange(-8,8):
                 if self.coordinates.X+i<0 or self.coordinates.Y+i<0:
-                    posib.append(coordinates(self.coordinates.X+i, self.coordinates.Y+i))
+                    possibility.append(coordinates(self.coordinates.X+i, self.coordinates.Y+i))
             for i in np.arange(-8,8):
                 if self.coordinates.X+i<0 or self.coordinates.Y<0:
-                    posib.append(coordinates(self.coordinates.X+i, self.coordinates.Y))
+                    possibility.append(coordinates(self.coordinates.X+i, self.coordinates.Y))
             for j in np.arange(-8,8):
                 if self.coordinates.X<0 or self.coordinates.Y+j<0:
-                    posib.append(coordinates(self.coordinates.X, self.coordinates.Y+j))
-            return posib
+                    possibility.append(coordinates(self.coordinates.X, self.coordinates.Y+j))
+            return possibility
         elif self.name == bishop:
-            posib = []
+            possibility = []
             for i in np.arange(-8,8):
                 if self.coordinates.X+i<0 or self.coordinates.Y+i<0:
-                    posib.append(coordinates(self.coordinates.X+i, self.coordinates.Y+i))
-            return posib
+                    possibility.append(coordinates(self.coordinates.X+i, self.coordinates.Y+i))
+            return possibility
         elif self.name == horse:
             return 'h'
         elif self.name == tower:
-            posib = []
+            possibility = []
             for i in np.arange(-8,8):
                 if self.coordinates.X+i<0 or self.coordinates.Y<0:
-                    posib.append(coordinates(self.coordinates.X+i, self.coordinates.Y))
+                    possibility.append(coordinates(self.coordinates.X+i, self.coordinates.Y))
             for j in np.arange(-8,8):
                 if self.coordinates.X<0 or self.coordinates.Y+j<0:
-                    posib.append(coordinates(self.coordinates.X, self.coordinates.Y+j))
-            return posib
+                    possibility.append(coordinates(self.coordinates.X, self.coordinates.Y+j))
+            return possibility
 
 
 
@@ -224,18 +224,17 @@ class board:
         """Returns all the possible moves for the selected player on the current stage of the board.
 
         Args:
-            player1 (bool, optional): True if the targeted player is player 1 false if the tageted player is player 2. Defaults to True.
+            player1 (bool, optional): True if the targeted player is player 1 false if the targeted player is player 2. Defaults to True.
         """
-        
-       
+
         movements =[]
         for i in np.arange(0,8):
             for j in np.arange(0,8):
                 if self.matrix[i][j].piece.player is player1:
                     movements.append([self.matrix[i][j].piece,self.matrix[i][j].piece.GetMoves()])
-        
-        for possibil in movements:
-            for move in possibil:
+
+        for possibility in movements:
+            for move in possibility:
                 self.matrix[i][j].price == move[0]
 if __name__ == "__main__":
     board = board()
