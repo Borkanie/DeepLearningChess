@@ -24,7 +24,7 @@ class square:
         else:
             self.piece = None
 
-    def __init__(self, piece: piece):
+    def SetPiece(self, piece: piece):
         """Creates a square filled with the given piece using it's coordinates.
 
         Args:

@@ -46,9 +46,9 @@ class board:
             raise Exception(f"How can we have 2 {player1.GetColor()} players")
         
         for piece in player1.pieces:
-            self.matrix.append(square(piece))
+            self.matrix.append(square(0,0,'').SetPiece(piece=piece))
         for piece in player2.pieces:
-            self.matrix.append(square(piece))
+            self.matrix.append(square(0,0,'').SetPiece(piece=piece))
 
         for i in np.arange(2, 6):
             matrix = []
@@ -61,7 +61,9 @@ class board:
         Set's player1 as the first player.
         """
         self.matrix = []
-        self.SetUpBoard()
+        self.player1 = player(True)
+        self.player2 = player(False)
+        self.SetUpBoard(self.player1,self.player2)
         self.player1Turn = True
 
     def Draw(self):

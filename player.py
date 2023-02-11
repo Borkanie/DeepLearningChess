@@ -18,22 +18,22 @@ class player:
         """
         pieces = []
         for i in np.arange(0, 8):
-            if self.player1:
-                pieces.append(piece(pawn, self.player1, coordinates(i, 1)))
+            if self.whitePlayer:
+                pieces.append(piece(pawn, self.whitePlayer, coordinates(i, 1)))
             else:
-                pieces.append(piece(pawn, self.player1, coordinates(i, 6)))
-        if self.player1:
+                pieces.append(piece(pawn, self.whitePlayer, coordinates(i, 6)))
+        if self.whitePlayer:
             kingRow = 0
         else:
             kingRow = 7
-        pieces.append(piece(tower, self.player1, coordinates(0, kingRow)))
-        pieces.append(piece(horse, self.player1, coordinates(1, kingRow)))
-        pieces.append(piece(horse, self.player1, coordinates(2, kingRow)))
-        pieces.append(piece(queen, self.player1, coordinates(3, kingRow)))
-        pieces.append(piece(king, self.player1, coordinates(4, kingRow)))
-        pieces.append(piece(horse, self.player1, coordinates(5, kingRow)))
-        pieces.append(piece(horse, self.player1, coordinates(6, kingRow)))
-        pieces.append(piece(tower, self.player1, coordinates(7, kingRow)))
+        pieces.append(piece(tower, self.whitePlayer, coordinates(0, kingRow)))
+        pieces.append(piece(horse, self.whitePlayer, coordinates(1, kingRow)))
+        pieces.append(piece(horse, self.whitePlayer, coordinates(2, kingRow)))
+        pieces.append(piece(queen, self.whitePlayer, coordinates(3, kingRow)))
+        pieces.append(piece(king, self.whitePlayer, coordinates(4, kingRow)))
+        pieces.append(piece(horse, self.whitePlayer, coordinates(5, kingRow)))
+        pieces.append(piece(horse, self.whitePlayer, coordinates(6, kingRow)))
+        pieces.append(piece(tower, self.whitePlayer, coordinates(7, kingRow)))
         return pieces
 
     def GetColor(self):
